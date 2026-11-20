@@ -12,6 +12,8 @@ docker compose up --build
 
 Abrí [http://127.0.0.1:8000](http://127.0.0.1:8000). El contenedor instala las dependencias con Composer y npm, crea `.env` si falta, aplica las migraciones de SQLite y compila los recursos. Las dependencias, los recursos compilados y la base de desarrollo se guardan en volúmenes de Docker. `docker compose down` conserva esos volúmenes.
 
+En una base sin alumnos, una migración carga 40 alumnos ficticios con comidas asignadas para probar el sistema. Si ya hay alumnos, no agrega datos de ejemplo. Los alumnos cargados pueden editarse o eliminarse desde la aplicación; revertir la migración no los borra.
+
 Los cambios en PHP y Blade se ven al recargar la página. Después de editar JavaScript o CSS, volvé a compilar dentro del contenedor:
 
 ```bash
