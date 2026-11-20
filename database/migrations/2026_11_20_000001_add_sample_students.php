@@ -12,7 +12,7 @@ return new class extends Migration
         }
 
         $firstNames = ['Ana', 'Bruno', 'Camila', 'Diego', 'Elena', 'Facundo', 'Gabriela', 'Hugo', 'Inés', 'Joaquín'];
-        $lastNames = ['García', 'Pérez', 'González', 'Rodríguez'];
+        $lastNames = ['García', 'Pérez', 'González', 'Rodríguez', 'López', 'Martínez', 'Fernández'];
         $now = now();
 
         foreach ($lastNames as $group => $lastName) {
