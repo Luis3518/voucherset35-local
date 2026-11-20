@@ -1,0 +1,44 @@
+{
+    "name": "cantina-la-35/vouchers",
+    "description": "Gestión local de becas alimentarias y vouchers",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "ext-pdo_sqlite": "*",
+        "barryvdh/laravel-dompdf": "^3.1",
+        "laravel/framework": "^13.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "test": [
+            "@putenv APP_ENV=testing",
+            "@putenv DB_DATABASE=:memory:",
+            "phpunit"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "8.3.0"
+        }
+    }
+}
