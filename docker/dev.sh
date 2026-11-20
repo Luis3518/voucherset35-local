@@ -20,4 +20,5 @@ php artisan migrate --force
 npm ci --no-audit --no-fund
 npm run build
 
+export PHP_INI_SCAN_DIR=:/app/docker/php
 exec php artisan serve --host=0.0.0.0 --port=8000 --no-reload
