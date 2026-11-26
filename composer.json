@@ -9,6 +9,8 @@
         "laravel/framework": "^13.0"
     },
     "require-dev": {
+        "larastan/larastan": "^3.15",
+        "laravel/pint": "^1.32",
         "mockery/mockery": "^1.6",
         "phpunit/phpunit": "^12.5"
     },
@@ -23,6 +25,9 @@
         }
     },
     "scripts": {
+        "format": "pint",
+        "lint": "pint --test",
+        "analyse": "phpstan analyse --memory-limit=512M",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
