@@ -42,4 +42,6 @@
 .student-option + .student-option { border-top: 1px solid var(--line); }
 .student-option:hover { background: #eff5fb; }
 #voucher-frame { display: block; width: 100%; height: 70vh; border: 1px solid var(--line); }
+.voucher-progress { max-width: 40rem; }
+.voucher-progress progress { display: block; height: 1rem; accent-color: var(--blue); }
 [hidden] { display: none !important; }

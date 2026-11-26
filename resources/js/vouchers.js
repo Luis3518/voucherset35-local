@@ -9,6 +9,7 @@ export function setupVouchers(form) {
     const selectionCount = form.querySelector('#selection-count');
     const button = form.querySelector('#generate-vouchers');
     const error = form.querySelector('#voucher-error');
+    const progress = form.querySelector('#voucher-progress');
     const fieldsets = [...form.querySelectorAll('fieldset')];
     const preview = document.querySelector('#voucher-preview');
     const frame = document.querySelector('#voucher-frame');
@@ -58,6 +59,7 @@ export function setupVouchers(form) {
         event.preventDefault();
         clearPreview();
         error.hidden = true;
+        progress.hidden = false;
         button.disabled = true;
         button.textContent = 'Generando…';
         fieldsets.forEach((fieldset) => { fieldset.disabled = true; });
@@ -89,6 +91,7 @@ export function setupVouchers(form) {
                 : failure.message;
             error.hidden = false;
         } finally {
+            progress.hidden = true;
             fieldsets.forEach((fieldset) => { fieldset.disabled = false; });
             button.disabled = false;
             button.textContent = 'Generar vouchers';

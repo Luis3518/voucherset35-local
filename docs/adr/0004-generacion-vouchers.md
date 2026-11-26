@@ -15,3 +15,5 @@ No consta una evaluación histórica de alternativas.
 La generación depende de los alumnos activos seleccionados, sus asignaciones y las exclusiones del calendario. El PDF descargado permite conservar el lote.
 
 En el entorno local de Docker se asignan 512 MB de memoria al servidor PHP: Dompdf construye el documento completo en memoria y el límite predeterminado de 128 MB se agotaba con lotes mensuales. Se eligió aumentar el límite frente a dividir el PDF, para conservar una única descarga. El límite sigue siendo finito y lotes mayores pueden requerir otra estrategia de generación.
+
+Durante la generación se muestra un indicador de progreso indeterminado y se pide mantener la página abierta. Se eligió frente a un porcentaje estimado porque la petición no comunica avances reales; desaparece al terminar o ante un error.

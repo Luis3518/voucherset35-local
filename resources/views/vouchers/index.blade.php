@@ -59,6 +59,11 @@
                 </div>
             </div>
             <div class="mt-3" id="voucher-error" role="alert" hidden></div>
+            <div id="voucher-progress" class="voucher-progress mt-3" role="status" hidden>
+                <label for="voucher-progress-bar" class="form-label mb-1">Generando el PDF...</label>
+                <progress id="voucher-progress-bar" class="w-100" aria-describedby="voucher-progress-help"></progress>
+                <p id="voucher-progress-help" class="text-secondary mb-0">Esto puede tardar varios minutos si seleccionaste muchos alumnos. Mantené esta página abierta.</p>
+            </div>
             <button type="submit" id="generate-vouchers" class="btn btn-primary mt-3">Generar vouchers</button>
         </form>
 
