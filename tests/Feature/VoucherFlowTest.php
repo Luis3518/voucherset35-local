@@ -23,7 +23,7 @@ class VoucherFlowTest extends TestCase
         $unselected = $this->createStudent(['first_name' => 'Bruno']);
         $this->createStudent(['first_name' => 'Clara', 'active' => false]);
 
-        $this->get(route('students.index'))->assertOk()->assertSee('Pérez, Ana');
+        $this->get(route('students.index', ['buscar' => 'Pérez']))->assertOk()->assertSee('Pérez, Ana');
         $this->get(route('students.edit', $student))->assertOk()->assertSee('Eliminar alumno');
         $this->get(route('meals.index'))->assertOk()->assertSee('Guardar cambios')
             ->assertSee('"weekdays":{"1":"Lunes"', false);
@@ -97,6 +97,29 @@ class VoucherFlowTest extends TestCase
 
         $this->assertMatchesRegularExpression('~/Type\s*/Pages\s*/Kids\s*\[[^\]]+\]\s*/Count\s+2\b~', $pdf->getContent());
         $this->assertMatchesRegularExpression('~/MediaBox\s*\[0(?:\.0+)?\s+0(?:\.0+)?\s+595\.\d+\s+841\.\d+\]~', $pdf->getContent());
+    }
+
+    public function test_each_student_starts_on_a_new_page_even_with_the_same_name(): void
+    {
+        $first = $this->createStudent();
+        $second = $this->createStudent();
+        $changes = [];
+        foreach (range(1, 4) as $weekday) {
+            foreach (['breakfast', 'lunch', 'snack', 'dinner'] as $meal) {
+                $changes[] = ['student_id' => $first->id, 'weekday' => $weekday, 'meal' => $meal, 'assigned' => true];
+            }
+        }
+        $changes = array_slice($changes, 0, 13);
+        $changes[] = ['student_id' => $second->id, 'weekday' => 1, 'meal' => 'breakfast', 'assigned' => true];
+        $this->patchJson(route('meals.update'), ['changes' => $changes])->assertNoContent();
+
+        $pdf = $this->postJson(route('vouchers.generate'), [
+            'starts_on' => '2026-11-16',
+            'ends_on' => '2026-11-19',
+            'student_ids' => [$first->id, $second->id],
+        ])->assertOk()->assertHeader('X-Voucher-Count', '14');
+
+        $this->assertMatchesRegularExpression('~/Type\s*/Pages\s*/Kids\s*\[[^\]]+\]\s*/Count\s+3\b~', $pdf->getContent());
     }
 
     private function createStudent(array $overrides = []): Student

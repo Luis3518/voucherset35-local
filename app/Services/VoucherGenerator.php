@@ -43,6 +43,7 @@ class VoucherGenerator
                 $meals = $assignments[$date->dayOfWeekIso] ?? null;
                 foreach (array_intersect_key(MealAssignment::MEALS, $meals?->all() ?? []) as $label) {
                     $vouchers->push([
+                        'student_id' => $student->id,
                         'name' => $student->full_name,
                         'date' => $date->format('d/m/Y'),
                         'meal' => $label,

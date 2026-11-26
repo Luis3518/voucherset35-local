@@ -62,7 +62,9 @@ class VoucherController
 
         $filename = "vouchers-{$data['starts_on']}_{$data['ends_on']}.pdf";
 
-        return Pdf::loadView('vouchers.pdf', ['pages' => $vouchers->chunk(12)])
+        $pages = $vouchers->groupBy('student_id')->flatMap(fn ($studentVouchers) => $studentVouchers->chunk(12));
+
+        return Pdf::loadView('vouchers.pdf', ['pages' => $pages])
             ->setPaper('a4')
             ->stream($filename)
             ->header('X-Voucher-Count', (string) $vouchers->count())

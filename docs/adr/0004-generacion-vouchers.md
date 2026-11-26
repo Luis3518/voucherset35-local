@@ -8,6 +8,8 @@ Se necesitan vouchers imprimibles para las comidas asignadas a alumnos con becas
 ## Decisión
 Generar un voucher por alumno seleccionado, fecha hábil dentro de la vigencia y comida asignada. Ofrecer vista previa y PDF A4 con hasta doce vouchers por página; el lote se conserva descargando el PDF.
 
+Cada alumno comienza en una página nueva y sus vouchers pueden ocupar varias páginas. Se agrupa por identificador de alumno para distinguir homónimos; se descartó compartir páginas entre alumnos para facilitar la distribución, a costa de utilizar más papel.
+
 ## Alternativas
 No consta una evaluación histórica de alternativas.
 
