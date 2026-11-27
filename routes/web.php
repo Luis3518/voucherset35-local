@@ -15,6 +15,7 @@ Route::resource('alumnos', StudentController::class)
 Route::get('/comidas', [MealController::class, 'index'])->name('meals.index');
 Route::patch('/comidas', [MealController::class, 'update'])->name('meals.update');
 
+Route::post('/calendario/feriados', [CalendarController::class, 'importHolidays'])->name('calendar.import-holidays');
 Route::resource('calendario', CalendarController::class)
     ->parameters(['calendario' => 'exclusion'])
     ->names('calendar')

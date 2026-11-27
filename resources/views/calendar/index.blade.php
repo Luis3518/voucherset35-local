@@ -10,6 +10,16 @@
         <a href="{{ route('calendar.create') }}" class="btn btn-primary">Nueva exclusión</a>
     </div>
 
+    <form method="post" action="{{ route('calendar.import-holidays') }}" class="d-flex flex-wrap align-items-end gap-2 mb-4">
+        @csrf
+        <div>
+            <label for="year" class="form-label">Año de los feriados</label>
+            <input id="year" name="year" type="number" class="form-control" min="2016" max="2100" required value="{{ old('year', now()->year) }}">
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Consultar y guardar feriados</button>
+        <span class="text-muted">Se conservan las exclusiones existentes.</span>
+    </form>
+
     <section class="panel" aria-label="Exclusiones del calendario">
         <div class="table-responsive">
             <table class="table align-middle mb-0">
